@@ -1,0 +1,34 @@
+//
+//  ViewController.swift
+//  InternalSolutions
+//
+//  Created by Trainee on 1/30/25.
+//
+
+import UIKit
+
+class HomeViewController: UIViewController {
+    
+    let text: UILabel = {
+        let textView = UILabel()
+        textView.text = "Welcome to Home View"
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        setupLabel()
+        // Do any additional setup after loading the view.
+    }
+    
+    private func setupLabel() {
+        view.addSubview(text)
+        NSLayoutConstraint.activate([
+            text.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            text.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+}
+

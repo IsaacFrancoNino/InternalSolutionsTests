@@ -1,0 +1,34 @@
+{
+  "screens": [
+    {
+      "component": "menu-item",
+      "data": [
+        {
+          "title": "HOME",
+          "icon": "house",
+          "route": "Home Route"
+        }
+      ]
+    },
+    {
+      "component": "menu-item2",
+      "data": [
+        {
+          "title": "HOLIDAYS",
+          "icon": "umbrella",
+          "route": "Holidays Route"
+        }
+      ]
+    },
+    {
+      "component": "menu-item3",
+      "data": [
+        {
+          "title": "TESTWEBVIEW",
+          "icon": "star",
+          "route": "https://rickandmortyapi.com/"
+        }
+      ]
+    }
+  ]
+}
