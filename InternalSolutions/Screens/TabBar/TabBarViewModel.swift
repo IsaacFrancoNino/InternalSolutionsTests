@@ -20,17 +20,19 @@ class TabBarViewModel {
     func initialize() {
         screensState = .loading
         Task {
+            sleep(3)
             do {
                 let screensResponse = try await service.fetchScreens()
                 let screens = screensResponse.screens
                 await getViewControllers(screens: screens)
             } catch {
                 await MainActor.run {
-                    screensState = .error
+                    screensState = .error("Something went wrong")
                 }
             }
         }
     }
+    
     @MainActor
     func getViewControllers(screens: [ScreenInfo]) {
         var viewControllers = [UIViewController]()
@@ -39,31 +41,31 @@ class TabBarViewModel {
                 guard let vc = createViewController(title: detail.title) else {return}
                 let navigationController = UINavigationController(rootViewController: vc)
                 navigationController.tabBarItem = UITabBarItem(title: detail.title, image: UIImage(systemName: detail.icon), selectedImage: UIImage(systemName: "\(detail.icon).fill"))
-                
                 viewControllers.append(navigationController)
             }
         }
         screensState = .success(viewControllers)
     }
     
-    
     private func createViewController(title: String) -> UIViewController? {
         switch title {
         case "HOME":
             return HomeViewController()
         case "HOLIDAYS":
-            return UIHostingController(rootView: HolidaysViewController())
+            let holidaysService = MockHolidaysServiceImpl()
+            let holidaysVM = HolidaysViewModel(service: holidaysService)
+            return UIHostingController(rootView: HolidaysViewController(viewModel: holidaysVM))
         case "TESTWEBVIEW":
-            return TestWebViewViewController()
+            let testWebViewVM = TestWebViewViewModel()
+            return TestWebViewViewController(viewModel: testWebViewVM)
         default:
             return nil
         }
     }
-    
 }
 
 enum ScreensState {
     case loading
-    case error
+    case error(String)
     case success([UIViewController])
 }

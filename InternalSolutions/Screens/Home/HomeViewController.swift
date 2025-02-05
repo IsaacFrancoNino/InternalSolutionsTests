@@ -20,7 +20,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupLabel()
-        // Do any additional setup after loading the view.
     }
     
     private func setupLabel() {

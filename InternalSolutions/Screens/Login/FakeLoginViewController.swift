@@ -13,7 +13,6 @@ class FakeLoginViewController:  UIViewController {
         let button = UIButton(type: .roundedRect)
         button.setTitle("Login", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         return button
     }()
     
@@ -26,18 +25,13 @@ class FakeLoginViewController:  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .systemBackground
         setupButton()
-        
         button.addTarget(self, action: #selector(goToHomeView), for: .touchUpInside)
-        // Do any additional setup after loading the view.
     }
     
     private func setupButton() {
         view.addSubview(button)
-        
-        
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
