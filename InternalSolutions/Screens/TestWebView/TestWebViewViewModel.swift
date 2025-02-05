@@ -12,7 +12,7 @@ class TestWebViewViewModel {
     
     func getMockPage() {
         webViewState = .loading
-        guard let url = URL(string: "https://rickandmortyapi.com/") else{ webViewState = .error("oops")
+        guard let url = URL(string: "https://rickandmortyapi.com/") else{ webViewState = .error(NSLocalizedString("TestWebViewVM_error_message", comment: "Error message"))
             return }
         let request = URLRequest(url: url)
         webViewState = .success(request)

@@ -20,14 +20,14 @@ class TabBarViewModel {
     func initialize() {
         screensState = .loading
         Task {
-            sleep(3)
+            sleep(1)
             do {
                 let screensResponse = try await service.fetchScreens()
                 let screens = screensResponse.screens
                 await getViewControllers(screens: screens)
             } catch {
                 await MainActor.run {
-                    screensState = .error("Something went wrong")
+                    screensState = .error(NSLocalizedString("TabBarVM_error_message", comment: "Error message"))
                 }
             }
         }

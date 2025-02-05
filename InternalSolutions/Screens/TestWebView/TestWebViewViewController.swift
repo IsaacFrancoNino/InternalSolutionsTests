@@ -34,7 +34,7 @@ class TestWebViewViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(NSLocalizedString("TestWebViewVC_fatal_error", comment: "Fatal error message"))
     }
     
     override func viewDidLoad() {
@@ -61,8 +61,8 @@ class TestWebViewViewController: UIViewController {
     }
     
     func show(errorMessage: String) {
-        let alertMessage = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "Ok", style: .default))
+        let alertMessage = UIAlertController(title: NSLocalizedString("TestWebViewVC_alert_error_title", comment: "Alert Title"), message: errorMessage, preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: NSLocalizedString("TestWebViewVC_alert_error_button_text", comment: "Button action label"), style: .default))
         present(alertMessage,animated: true)
     }
     

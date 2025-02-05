@@ -11,7 +11,7 @@ class HomeViewController: UIViewController {
     
     let text: UILabel = {
         let textView = UILabel()
-        textView.text = "Welcome to Home View"
+        textView.text = NSLocalizedString("HomeVC_label_text", comment: "Label text")
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()

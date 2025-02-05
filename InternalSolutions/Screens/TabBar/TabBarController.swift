@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(NSLocalizedString("TabBarController_fatal_error", comment: "Fatal error message"))
     }
     
     override func viewDidLoad() {
@@ -55,8 +55,8 @@ class TabBarController: UITabBarController {
     }
     
     func show(errorMessage: String) {
-        let alertMessage = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "Ok", style: .default))
+        let alertMessage = UIAlertController(title: NSLocalizedString("TabBarController_alert_error_title", comment: "Alert title"), message: errorMessage, preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: NSLocalizedString("TabBarController_alert_error_button_text", comment: "Action Text"), style: .default))
         present(alertMessage,animated: true)
     }
     

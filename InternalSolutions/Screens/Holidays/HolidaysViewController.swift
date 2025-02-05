@@ -31,7 +31,7 @@ struct HolidaysViewController: View {
                 }
                 .padding()
             }
-            .navigationTitle("Fake Holidays")
+            .navigationTitle(NSLocalizedString("HolidaysVC_navigation_title", comment: "Title"))
         }
     }
 }
