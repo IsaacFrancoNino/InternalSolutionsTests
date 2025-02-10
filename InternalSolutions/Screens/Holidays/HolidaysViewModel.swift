@@ -9,12 +9,9 @@ import Foundation
 
 class HolidaysViewModel: ObservableObject{
     
-    var service: HolidaysService
+    @Inject var service: HolidaysService
     @Published var holidays = [Holiday]()
     
-    init(service: HolidaysService) {
-        self.service = service
-    }
     
     func getHolidays() {
         Task {

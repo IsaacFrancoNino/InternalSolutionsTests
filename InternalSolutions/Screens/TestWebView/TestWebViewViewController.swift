@@ -12,7 +12,7 @@ import Combine
 
 class TestWebViewViewController: UIViewController {
     
-    let viewModel: TestWebViewViewModel
+    var viewModel: TestWebViewViewModel
     private var cancellables = Set<AnyCancellable>()
     
     let webView: WKWebView = {
@@ -28,8 +28,9 @@ class TestWebViewViewController: UIViewController {
         return loader
     }()
     
-    init(viewModel: TestWebViewViewModel) {
-        self.viewModel = viewModel
+    init() {
+        @Inject var _viewModel: TestWebViewViewModel
+        self.viewModel = _viewModel
         super.init(nibName: nil, bundle: nil)
     }
     

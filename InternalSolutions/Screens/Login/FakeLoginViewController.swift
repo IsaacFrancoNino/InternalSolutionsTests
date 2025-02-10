@@ -17,9 +17,7 @@ class FakeLoginViewController:  UIViewController {
     }()
     
     @objc func goToHomeView() {
-        let mockService = TabBarMockServiceImpl()
-        let tabBarVM = TabBarViewModel(service: mockService)
-        let tabBarVC = TabBarController(viewModel: tabBarVM)
+        @Inject var tabBarVC: TabBarController
         navigationController?.pushViewController(tabBarVC, animated: true)
     }
     

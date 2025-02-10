@@ -11,11 +11,9 @@ import SwiftUI
 
 class TabBarViewModel {
     @Published var screensState: ScreensState = .loading
-    var service: TabBarService
     
-    init(service: TabBarService) {
-        self.service = service
-    }
+    @Inject var service: TabBarService
+    
     
     func initialize() {
         screensState = .loading
@@ -50,14 +48,14 @@ class TabBarViewModel {
     private func createViewController(title: String) -> UIViewController? {
         switch title {
         case "HOME":
-            return HomeViewController()
+            @Inject var HomeVC: HomeViewController
+            return HomeVC
         case "HOLIDAYS":
-            let holidaysService = MockHolidaysServiceImpl()
-            let holidaysVM = HolidaysViewModel(service: holidaysService)
-            return UIHostingController(rootView: HolidaysViewController(viewModel: holidaysVM))
+            @Inject var HolidaysVC: HolidaysViewController
+            return UIHostingController(rootView: HolidaysVC )
         case "TESTWEBVIEW":
-            let testWebViewVM = TestWebViewViewModel()
-            return TestWebViewViewController(viewModel: testWebViewVM)
+            @Inject var webViewVC:TestWebViewViewController
+            return webViewVC
         default:
             return nil
         }

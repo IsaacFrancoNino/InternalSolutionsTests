@@ -12,7 +12,7 @@ import Combine
 
 class TabBarController: UITabBarController {
     
-    let viewModel: TabBarViewModel
+    @Inject var viewModel: TabBarViewModel
     private var cancellables = Set<AnyCancellable>()
     
     private var loader: UIActivityIndicatorView = {
@@ -22,14 +22,6 @@ class TabBarController: UITabBarController {
         return loader
     }()
     
-    init(viewModel: TabBarViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError(NSLocalizedString("TabBarController_fatal_error", comment: "Fatal error message"))
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,7 +8,7 @@
 import Foundation
 
 class TestWebViewViewModel {
-    @Published  var webViewState: WebViewState = .loading
+    @Published var webViewState: WebViewState = .loading
     
     func getMockPage() {
         webViewState = .loading
