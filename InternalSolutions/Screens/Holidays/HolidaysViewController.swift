@@ -12,8 +12,9 @@ struct HolidaysViewController: View {
     
     @ObservedObject var viewModel: HolidaysViewModel
     
-    init(viewModel: HolidaysViewModel) {
-        self.viewModel = viewModel
+    init() {
+        @Inject var _viewModel: HolidaysViewModel
+        self.viewModel = _viewModel
         viewModel.getHolidays()
     }
     
@@ -31,7 +32,7 @@ struct HolidaysViewController: View {
                 }
                 .padding()
             }
-            .navigationTitle("Fake Holidays")
+            .navigationTitle(NSLocalizedString("HolidaysVC_navigation_title", comment: "Title"))
         }
     }
 }

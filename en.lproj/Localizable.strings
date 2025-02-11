@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  InternalSolutions
+
+  Created by Trainee on 2/5/25.
+*/
+
+// Localizable.strings (English)
+/// MARK: HolidaysViewController Strings
+"HolidaysVC_navigation_title" = "Fake Holidays";
+
+/// MARK: HomeViewController Strings
+"HomeVC_label_text" = "Welcome to Home View";
+
+/// MARK: FakeLoginViewController Strings
+"FakeLoginVC_button_title" = "Login";
+
+
+/// MARK: TabBarController Strings
+"TabBarController_fatal_error" = "init(coder:) has not been implemented";
+"TabBarController_alert_error_title" = "Error";
+"TabBarController_alert_error_button_text" = "Ok";
+
+/// MARK: TabBarViewModel Strings
+"TabBarVM_error_message" = "Something went wrong";
+
+/// MARK: TestWebViewViewController Strings
+"TestWebViewVC_fatal_error" = "init(coder:) has not been implemented";
+"TestWebViewVC_alert_error_title" = "Error";
+"TestWebViewVC_alert_error_button_text" = "Ok";
+
+
+/// MARK: TestWebViewViewModel Strings
+"TestWebViewVM_error_message" = "Something went wrong";
+

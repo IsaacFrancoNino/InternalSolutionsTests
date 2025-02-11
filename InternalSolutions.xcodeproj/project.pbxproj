@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		EC75C6162D4BF9CD0050EE23 /* AuthLibraryiOS in Frameworks */ = {isa = PBXBuildFile; productRef = EC75C6152D4BF9CD0050EE23 /* AuthLibraryiOS */; };
+		EC75C6C52D540D380050EE23 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC75C6C32D540D380050EE23 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EC75C5DF2D4BF0E80050EE23 /* InternalSolutions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternalSolutions.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC75C6C42D540D380050EE23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -50,6 +52,7 @@
 		EC75C5D62D4BF0E80050EE23 = {
 			isa = PBXGroup;
 			children = (
+				EC75C6C32D540D380050EE23 /* Localizable.strings */,
 				EC75C5E12D4BF0E80050EE23 /* InternalSolutions */,
 				EC75C5E02D4BF0E80050EE23 /* Products */,
 			);
@@ -131,6 +134,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC75C6C52D540D380050EE23 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +149,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EC75C6C32D540D380050EE23 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC75C6C42D540D380050EE23 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+			usesTabs = 0;
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		EC75C5F32D4BF0EA0050EE23 /* Debug */ = {

@@ -11,23 +11,21 @@ import SwiftUI
 
 class TabBarViewModel {
     @Published var screensState: ScreensState = .loading
-    var service: TabBarService
     
-    init(service: TabBarService) {
-        self.service = service
-    }
+    @Inject var service: TabBarService
+    
     
     func initialize() {
         screensState = .loading
         Task {
-            sleep(3)
+            sleep(1)
             do {
                 let screensResponse = try await service.fetchScreens()
                 let screens = screensResponse.screens
                 await getViewControllers(screens: screens)
             } catch {
                 await MainActor.run {
-                    screensState = .error("Something went wrong")
+                    screensState = .error(NSLocalizedString("TabBarVM_error_message", comment: "Error message"))
                 }
             }
         }
@@ -50,14 +48,14 @@ class TabBarViewModel {
     private func createViewController(title: String) -> UIViewController? {
         switch title {
         case "HOME":
-            return HomeViewController()
+            @Inject var HomeVC: HomeViewController
+            return HomeVC
         case "HOLIDAYS":
-            let holidaysService = MockHolidaysServiceImpl()
-            let holidaysVM = HolidaysViewModel(service: holidaysService)
-            return UIHostingController(rootView: HolidaysViewController(viewModel: holidaysVM))
+            @Inject var HolidaysVC: HolidaysViewController
+            return UIHostingController(rootView: HolidaysVC )
         case "TESTWEBVIEW":
-            let testWebViewVM = TestWebViewViewModel()
-            return TestWebViewViewController(viewModel: testWebViewVM)
+            @Inject var webViewVC:TestWebViewViewController
+            return webViewVC
         default:
             return nil
         }

@@ -12,7 +12,7 @@ import Combine
 
 class TestWebViewViewController: UIViewController {
     
-    let viewModel: TestWebViewViewModel
+    var viewModel: TestWebViewViewModel
     private var cancellables = Set<AnyCancellable>()
     
     let webView: WKWebView = {
@@ -28,13 +28,14 @@ class TestWebViewViewController: UIViewController {
         return loader
     }()
     
-    init(viewModel: TestWebViewViewModel) {
-        self.viewModel = viewModel
+    init() {
+        @Inject var _viewModel: TestWebViewViewModel
+        self.viewModel = _viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(NSLocalizedString("TestWebViewVC_fatal_error", comment: "Fatal error message"))
     }
     
     override func viewDidLoad() {
@@ -61,8 +62,8 @@ class TestWebViewViewController: UIViewController {
     }
     
     func show(errorMessage: String) {
-        let alertMessage = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-        alertMessage.addAction(UIAlertAction(title: "Ok", style: .default))
+        let alertMessage = UIAlertController(title: NSLocalizedString("TestWebViewVC_alert_error_title", comment: "Alert Title"), message: errorMessage, preferredStyle: .alert)
+        alertMessage.addAction(UIAlertAction(title: NSLocalizedString("TestWebViewVC_alert_error_button_text", comment: "Button action label"), style: .default))
         present(alertMessage,animated: true)
     }
     

@@ -11,15 +11,13 @@ class FakeLoginViewController:  UIViewController {
     
     let button: UIButton = {
         let button = UIButton(type: .roundedRect)
-        button.setTitle("Login", for: .normal)
+        button.setTitle(NSLocalizedString("FakeLoginVC_button_title", comment: "Button title"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     @objc func goToHomeView() {
-        let mockService = TabBarMockServiceImpl()
-        let tabBarVM = TabBarViewModel(service: mockService)
-        let tabBarVC = TabBarController(viewModel: tabBarVM)
+        @Inject var tabBarVC: TabBarController
         navigationController?.pushViewController(tabBarVC, animated: true)
     }
     

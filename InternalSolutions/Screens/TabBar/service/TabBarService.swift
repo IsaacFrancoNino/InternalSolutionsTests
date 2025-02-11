@@ -11,7 +11,6 @@ protocol TabBarService {
     func fetchScreens() async throws -> ScreensResponse
 }
 
-
 class TabBarMockServiceImpl: TabBarService {
     
     private let decoder: JSONDecoder = JSONDecoder()
