@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
+        //navigationItem.hidesBackButton = true
         observeViewModel()
         setupLoader()
     }

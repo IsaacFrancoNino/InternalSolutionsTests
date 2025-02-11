@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 class FakeLoginViewController:  UIViewController {
     
+    weak var coordinator: AppCoordinator?
+    
     let button: UIButton = {
         let button = UIButton(type: .roundedRect)
         button.setTitle(NSLocalizedString("FakeLoginVC_button_title", comment: "Button title"), for: .normal)
@@ -16,16 +18,17 @@ class FakeLoginViewController:  UIViewController {
         return button
     }()
     
-    @objc func goToHomeView() {
-        @Inject var tabBarVC: TabBarController
-        navigationController?.pushViewController(tabBarVC, animated: true)
+    @objc func goToTabBarView() {
+//        @Inject var tabBarVC: TabBarController
+//        navigationController?.pushViewController(tabBarVC, animated: true)
+        coordinator?.goToTabBar()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupButton()
-        button.addTarget(self, action: #selector(goToHomeView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goToTabBarView), for: .touchUpInside)
     }
     
     private func setupButton() {

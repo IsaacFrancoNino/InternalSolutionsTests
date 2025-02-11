@@ -51,5 +51,10 @@ class DependencyInitializer {
         container.register(HomeViewController.self) {
             HomeViewController()
         }
+        
+        // MARK: FakeLoginScreen Dependencies
+        container.register(FakeLoginViewController.self) {
+            FakeLoginViewController()
+        }
     }
 }
