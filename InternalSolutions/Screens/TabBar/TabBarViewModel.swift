@@ -17,7 +17,6 @@ class TabBarViewModel {
     func initialize() {
         screensState = .loading
         Task {
-            sleep(1)
             do {
                 let screensResponse = try await service.fetchScreens()
                 let screens = screensResponse.screens
@@ -35,7 +34,7 @@ class TabBarViewModel {
         var viewControllers = [UIViewController]()
         for screen in screens {
             for detail in screen.data {
-                guard let vc = createViewController(title: detail.title) else {return}
+                guard let vc = createViewController(title: detail.title, route: detail.route) else { continue }
                 let navigationController = UINavigationController(rootViewController: vc)
                 navigationController.tabBarItem = UITabBarItem(title: detail.title, image: UIImage(systemName: detail.icon), selectedImage: UIImage(systemName: "\(detail.icon).fill"))
                 viewControllers.append(navigationController)
@@ -55,6 +54,24 @@ class TabBarViewModel {
         case "TESTWEBVIEW":
             @Inject var webViewVC:TestWebViewViewController
             return webViewVC
+        default:
+            return nil
+        }
+    }
+    
+    private func createViewController(title: String, route: String?) -> UIViewController? {
+        switch title {
+        case "HOME":
+            @Inject var HomeVC: HomeViewController
+            return HomeVC
+        case "HOLIDAYS":
+            @Inject var HolidaysVC: HolidaysViewController
+            return UIHostingController(rootView: HolidaysVC )
+        case "TESTWEBVIEW":
+            guard let route = route else { return nil }
+            @InjectWithArg(route) var webViewModel: TestWebViewViewModel
+            @InjectWithArg(webViewModel) var WebViewContoller: TestWebViewViewController
+            return WebViewContoller
         default:
             return nil
         }

@@ -28,9 +28,8 @@ class TestWebViewViewController: UIViewController {
         return loader
     }()
     
-    init() {
-        @Inject var _viewModel: TestWebViewViewModel
-        self.viewModel = _viewModel
+    init(viewModel: TestWebViewViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -80,17 +79,19 @@ class TestWebViewViewController: UIViewController {
     func observeViewModel() {
         viewModel.$webViewState.sink { [weak self] state in
             guard let self else { return }
-            switch state {
-            case .loading:
-                showLoader()
-            case .error(let message):
-                show(errorMessage: message)
-                hideLoader()
-            case .success(let request): webView.load(request)
-                hideLoader()
+            DispatchQueue.main.async {
+                switch state {
+                case .loading:
+                    self.showLoader()
+                case .error(let message):
+                    self.show(errorMessage: message)
+                    self.hideLoader()
+                case .success(let request): self.webView.load(request)
+                    self.hideLoader()
+                }
             }
         }
         .store(in: &cancellables)
-        viewModel.getMockPage()
+        viewModel.getPage()
     }
 }
