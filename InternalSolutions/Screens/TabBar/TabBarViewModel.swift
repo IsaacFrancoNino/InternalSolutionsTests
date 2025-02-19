@@ -14,7 +14,6 @@ class TabBarViewModel {
     
     @Inject var service: TabBarService
     
-    
     func initialize() {
         screensState = .loading
         Task {
