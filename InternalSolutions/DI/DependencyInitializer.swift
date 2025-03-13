@@ -38,13 +38,19 @@ class DependencyInitializer {
             HolidaysViewController()
         }
         
-        // MARK: WebViewScreen Dependencies
-        container.register(TestWebViewViewModel.self) {
-            TestWebViewViewModel()
+        //MARK: TestWebService Dependencies
+        container.register(TestWebService.self) {
+            TestWebServiceImpl()
         }
         
-        container.register(TestWebViewViewController.self) {
-            TestWebViewViewController()
+        // MARK: WebViewScreen Dependencies
+        container.register(TestWebViewViewModel.self) { (route: String) in
+            @Inject var service: TestWebService
+            return TestWebViewViewModel(service: service, route: route)
+        }
+        
+        container.register(TestWebViewViewController.self) { (viewModel: TestWebViewViewModel) in
+            TestWebViewViewController(viewModel: viewModel)
         }
         
         // MARK: HomeViewScreen Dependencies

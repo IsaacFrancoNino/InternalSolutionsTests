@@ -27,7 +27,19 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         //navigationItem.hidesBackButton = true
         observeViewModel()
+       // setupTabBar()
         setupLoader()
+    }
+    
+    func setupTabBar() {
+        tabBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(tabBar)
+        NSLayoutConstraint.activate([
+            tabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tabBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     func setupLoader() {
