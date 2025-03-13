@@ -45,9 +45,7 @@ class DependencyInitializer {
         
         // MARK: WebViewScreen Dependencies
         container.register(TestWebViewViewModel.self) { (route: String) in
-            guard let service = DependencyInitializer.container.resolve(TestWebService.self) else {
-                    fatalError("TestWebService dependency is missing!")
-                }
+            @Inject var service: TestWebService
             return TestWebViewViewModel(service: service, route: route)
         }
         

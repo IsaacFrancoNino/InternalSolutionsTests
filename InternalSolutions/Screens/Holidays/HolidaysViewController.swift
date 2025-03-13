@@ -33,7 +33,9 @@ struct HolidaysViewController: View {
                 .padding()
             }
             .navigationTitle(NSLocalizedString("HolidaysVC_navigation_title", comment: "Title"))
+            .navigationBarTitleDisplayMode(.inline)
+            //.edgesIgnoringSafeArea(.bottom)
+            //.padding(.top)
         }
     }
 }
-

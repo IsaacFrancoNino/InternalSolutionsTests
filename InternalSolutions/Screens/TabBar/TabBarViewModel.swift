@@ -36,6 +36,8 @@ class TabBarViewModel {
             for detail in screen.data {
                 guard let vc = createViewController(title: detail.title, route: detail.route) else { continue }
                 let navigationController = UINavigationController(rootViewController: vc)
+                navigationController.isNavigationBarHidden = true
+                
                 navigationController.tabBarItem = UITabBarItem(title: detail.title, image: UIImage(systemName: detail.icon), selectedImage: UIImage(systemName: "\(detail.icon).fill"))
                 viewControllers.append(navigationController)
             }

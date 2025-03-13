@@ -39,6 +39,7 @@ class TestWebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupWebView()
         observeViewModel()
         setupLoader()
@@ -67,12 +68,14 @@ class TestWebViewViewController: UIViewController {
     }
     
     func setupWebView() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        title = "TestWebView"
         view.addSubview(webView)
         NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: view.topAnchor),
-            webView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            webView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            webView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            webView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
