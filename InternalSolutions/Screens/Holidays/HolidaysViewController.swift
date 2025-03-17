@@ -12,6 +12,10 @@ struct HolidaysViewController: View {
     
     @ObservedObject var viewModel: HolidaysViewModel
     
+    private var sortedSections: [String] {
+        viewModel.holidaysByLetter.keys.sorted()
+    }
+    
     init() {
         @Inject var _viewModel: HolidaysViewModel
         self.viewModel = _viewModel
@@ -20,22 +24,45 @@ struct HolidaysViewController: View {
     
     var body: some View {
         NavigationStack {
-            List(viewModel.holidays, id: \.name) { holiday in
-                HStack {
-                    VStack (alignment: .leading) {
-                        Text (holiday.name)
-                            .font(.headline)
-                        Text (holiday.date)
-                            .font(.subheadline)
-                            .foregroundStyle(Color.gray)
+            List {
+                ForEach(sortedSections, id: \.self) { letter in
+                    if let holidays = viewModel.holidaysByLetter[letter] {
+                        Section(header: Text(letter).font(.headline)) {
+                            HolidaysListView(holidays: holidays)
+                        }
+                        
                     }
+                        
                 }
-                .padding()
             }
             .navigationTitle(NSLocalizedString("HolidaysVC_navigation_title", comment: "Title"))
             .navigationBarTitleDisplayMode(.inline)
-            //.edgesIgnoringSafeArea(.bottom)
-            //.padding(.top)
         }
+    }
+}
+
+struct HolidaysListView: View {
+    let holidays: [Holiday]
+
+    var body: some View {
+        ForEach(holidays, id: \.name) { holiday in
+            HolidayRow(holiday: holiday)
+        }
+    }
+}
+
+struct HolidayRow: View {
+    let holiday: Holiday
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(holiday.name)
+                .font(.headline)
+                .fontWeight(.medium)
+            Text(holiday.date)
+                .font(.caption)
+                .foregroundStyle(.gray)
+        }
+        .padding(.vertical)
     }
 }
